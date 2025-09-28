@@ -1,0 +1,17 @@
+n, m, k = map(int, input().split())  # n: 배열 크기, m: 더하는 총 횟수, k: 같은 인덱스 연속 사용 제한
+numbers = list(map(int, input().split()))
+
+def big_number_rule(n, m, k, numbers):
+    numbers.sort(reverse=True)
+    first = numbers[0]
+    second = numbers[1]
+
+    # 패턴: '가장 큰 수 k번 + 두 번째 큰 수 1번' 이 (k+1) 길이로 반복됨
+    pattern_count = m // (k + 1)
+    remainder = m % (k + 1)     # 반복 후 남는 횟수
+
+    total = (pattern_count * (first * k + second)) + (remainder * first)
+    return total
+
+result = big_number_rule(n, m, k, numbers)
+print(result)
